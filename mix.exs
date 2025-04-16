@@ -60,7 +60,7 @@ defmodule TeacExample.MixProject do
       {:bandit, "~> 1.5"},
       {:websockex, "~> 0.4.3"},
       {:req, "~> 0.5.10"},
-      {:teac, path: "../teac/"}
+      {:teac, git: "https://github.com/deadego/teac"}
     ]
   end
 
