@@ -5,15 +5,13 @@ defmodule TeacExampleWeb.OAuthCallbackController do
   # alias TeacExampleWeb.Accounts
 
   def new(conn, %{"provider" => "twitch", "code" => code, "state" => state}) do
-    client = twitch_client(conn)
-
     # Get token
     {:ok,
      %{
        "access_token" => access_token,
        "expires_in" => access_token_expires_in,
        "refresh_token" => refresh_token
-     }} = client.exchange_code_for_token(code: code, state: state)
+     }} = Teac.OAuth.AuthorizationCodeFlow.exchange_code_for_token(code: code, state: state)
 
     {:ok,
      [
@@ -30,10 +28,7 @@ defmodule TeacExampleWeb.OAuthCallbackController do
          "type" => twitch_type
        }
      ]} =
-      Teac.Api.Users.get(
-        client_id: Application.get_env(:teac, :client_id),
-        token: access_token
-      )
+      Teac.Api.Users.get(token: access_token)
 
     info = %{
       "broadcaster_type" => broadcaster_type,
@@ -63,9 +58,5 @@ defmodule TeacExampleWeb.OAuthCallbackController do
 
   def sign_out(conn, _) do
     TeacExampleWeb.UserAuth.log_out_user(conn)
-  end
-
-  defp twitch_client(conn) do
-    conn.assigns[:twitch_client] || TeacExample.TwitchOAuthClient
   end
 end
