@@ -66,9 +66,41 @@ defmodule TeacExampleWeb.PageController do
   def chat_badges_global_get(conn, _) do
     {:ok, badges} =
       Teac.Api.Chat.Badges.Global.get(token: Teac.Oauth.ClientCredentialManager.get_token())
-      |> dbg()
 
     render(conn, :chat_badges_global_get, badges: badges)
+  end
+
+  def chat_settings_get(conn, _) do
+    {:ok, chat} =
+      Teac.Api.Chat.Settings.get(
+        token: Teac.Oauth.ClientCredentialManager.get_token(),
+        broadcaster_id: 27_082_158
+      )
+
+    render(conn, :chat_settings_get, chat: chat)
+  end
+
+  def chat_messages_post(conn, _) do
+    {:ok, chat} =
+      Teac.Api.Chat.Messages.post(
+        token: Teac.Oauth.ClientCredentialManager.get_token(),
+        broadcaster_id: 1_159_034_889,
+        sender_id: 1_159_034_889,
+        message: "YOLO"
+      )
+
+    render(conn, :chat_messages_post, chat: chat)
+  end
+
+  def chat_color_get(conn, _) do
+    {:ok, color} =
+      Teac.Api.Chat.Color.get(
+        token: Teac.Oauth.ClientCredentialManager.get_token(),
+        user_id: 1_159_034_889
+      )
+      |> dbg()
+
+    render(conn, :chat_color_get, color: color)
   end
 
   def users_get(conn, _) do

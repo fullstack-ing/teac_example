@@ -28,6 +28,9 @@ defmodule TeacExampleWeb.Router do
     get "/app/chat/emotes/get", PageController, :chat_emotes_get
     get "/app/chat/badges/get", PageController, :chat_badges_get
     get "/app/chat/badges/global/get", PageController, :chat_badges_global_get
+    get "/app/chat/settings/get", PageController, :chat_settings_get
+    get "/app/chat/messages/post", PageController, :chat_messages_post
+    get "/app/chat/color/get", PageController, :chat_color_get
 
     get "/app/users/get", PageController, :users_get
   end
