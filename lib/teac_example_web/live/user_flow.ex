@@ -1,4 +1,4 @@
-defmodule TeacExampleWeb.TwitchLive do
+defmodule TeacExampleWeb.Live.UserFlow do
   use TeacExampleWeb, :live_view
 
   def render(assigns) do

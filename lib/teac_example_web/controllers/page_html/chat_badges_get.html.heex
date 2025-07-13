@@ -1,0 +1,10 @@
+<div class="mx-auto my-20 text-center">
+  <div class="my-2 text-lg font-bold">Teac.Api.Chat.Badge.get()</div>
+  <div class="grid grid-cols-8 gap-4">
+    <div :for={badge <- @badges} class="inline">
+      <span :for={%{"image_url_4x" => img_src} <- badge["versions"]}>
+        <img src={img_src} />
+      </span>
+    </div>
+  </div>
+</div>

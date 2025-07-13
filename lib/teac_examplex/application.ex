@@ -18,6 +18,7 @@ defmodule TeacExample.Application do
       # Start a worker by calling: TeacExample.Worker.start_link(arg)
       # {TeacExample.Worker, arg},
       # Start to serve requests, typically the last entry
+      Teac.Oauth.ClientCredentialManager,
       TeacExampleWeb.Endpoint
     ]
 

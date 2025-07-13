@@ -1,0 +1,13 @@
+<div class="mx-auto max-w-sm my-20 text-center">
+  <div class="my-2 text-lg font-bold">Teac.Api.Bits.Cheermotes.get(opts)</div>
+  <div :for={cheermote <- @cheermotes} class="mb-2 bg-zinc-100 rounded px-3 py-2">
+    prefix: {cheermote["prefix"]}
+    <div>
+      <img
+        :for={tier <- cheermote["tiers"]}
+        class="inline"
+        src={tier["images"]["light"]["animated"]["1"]}
+      />
+    </div>
+  </div>
+</div>

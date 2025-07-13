@@ -1,0 +1,12 @@
+<div class="mx-auto max-w-7xl my-20 ">
+  <div class="my-2 text-3 font-bold text-center">Teac.Api.Users.get(opts)</div>
+  <div :for={user <- @users} class="mb-2 bg-zinc-100 rounded px-3 py-2 flex ">
+    <img src={user["profile_image_url"]} />
+    <ul>
+      <li>ID: {user["id"]}</li>
+      <li>Name: {user["display_name"]}</li>
+      <li>About: {user["description"]}</li>
+      <li>broadcaster_type: {user["broadcaster_type"]}</li>
+    </ul>
+  </div>
+</div>

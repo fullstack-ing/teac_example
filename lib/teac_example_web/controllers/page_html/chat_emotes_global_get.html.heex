@@ -1,0 +1,8 @@
+<div class="mx-auto my-20 text-center">
+  <div class="my-2 text-lg font-bold">Teac.Api.Chat.Emotes.Global.get()</div>
+  <div class="grid grid-cols-8 gap-4">
+    <div :for={emote <- @emotes}>
+      <img src={emote["images"] |> Map.values() |> List.last()} />
+    </div>
+  </div>
+</div>

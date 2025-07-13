@@ -1,0 +1,17 @@
+<div class="mx-auto max-w-sm my-20 text-center">
+  <div class="my-2 text-lg font-bold">Teac.Api.Channels.get()</div>
+  <div :for={channel <- @channels}>
+    <h2>{channel["title"]}</h2>
+    <ul>
+      <li>
+        User: {channel["broadcaster_name"]}
+      </li>
+      <li>
+        Category: {channel["game_name"]}
+      </li>
+      <li>
+        Tags: {channel["tags"] |> Enum.join(", ")}
+      </li>
+    </ul>
+  </div>
+</div>
