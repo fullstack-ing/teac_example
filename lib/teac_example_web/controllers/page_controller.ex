@@ -15,7 +15,7 @@ defmodule TeacExampleWeb.PageController do
   def channels_get(conn, _) do
     {:ok, channels} =
       Teac.Api.Channels.get(
-        broadcaster_ids: 1_159_034_889,
+        broadcaster_ids: [1_159_034_889, 27_082_158],
         token: Teac.Oauth.ClientCredentialManager.get_token()
       )
 
@@ -192,7 +192,7 @@ defmodule TeacExampleWeb.PageController do
     {:ok, users} =
       Teac.Api.Users.get(
         token: Teac.Oauth.ClientCredentialManager.get_token(),
-        logins: ["lordtocs", "fullstacking", "qiqi_impact"]
+        logins: ["lordtocs", "fullstacking", "qiqi_impact", "theprimeagen"]
       )
 
     render(conn, :users_get, users: users)
