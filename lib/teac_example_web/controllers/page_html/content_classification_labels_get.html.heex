@@ -1,0 +1,13 @@
+<div class="mx-auto my-20">
+  <div class="my-2 text-lg font-bold text-center">
+    Teac.Api.ContentClassificationLabels.get()
+  </div>
+
+  <div class="my-10">
+    <div :for={label <- @labels} class="m-8 p-4 bg-zinc-200 rounded">
+      <p>ID: {label["id"]}</p>
+      <p>Name: {label["name"]}</p>
+      <p>Description: {label["description"]}</p>
+    </div>
+  </div>
+</div>

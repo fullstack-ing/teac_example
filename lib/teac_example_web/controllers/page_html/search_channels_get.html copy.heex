@@ -1,0 +1,26 @@
+<div class="mx-auto my-20 text-center">
+  <div class="my-2 text-lg font-bold">Teac.Api.Search.Channels.get()</div>
+
+  <div>
+    <form method="get">
+      <div>
+        <input type="text" name="q" />
+      </div>
+      <button
+        class="mt-6 rounded-sm bg-indigo-600 px-2 py-1 text-xs font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        type="submit"
+      >
+        Search Channels
+      </button>
+    </form>
+    <div :if={@channels} class="my-10 grid grid-flow-row grid-cols-4 gap-y-12">
+      <div :for={channel <- @channels |> dbg()} class="mb-8">
+        <img class="w-[300px] h-[300px] mr-5" src={channel["thumbnail_url"]} />
+        <div>
+          <p>Name: {channel["display_name"]}</p>
+          <p>Is Live: {channel["is_live"]}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

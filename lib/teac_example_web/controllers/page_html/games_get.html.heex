@@ -1,0 +1,17 @@
+<div class="mx-auto my-20 ">
+  <div class="my-2 text-lg font-bold text-center">Teac.Api.Games.get()</div>
+
+  <div class="grid grid-flow-row grid-cols-8 gap-y-12">
+    <div :for={game <- @games |> dbg()} class="w-fit flex flex-col overflow-hidden">
+      <div class="flex-1 text-xs py-2 overflow-hidden text-clip truncate">{game["name"]}</div>
+      <img
+        class="w-[132px] h-[190px]"
+        src={
+          game["box_art_url"]
+          |> String.replace("{width}", "138")
+          |> String.replace("{height}", "190")
+        }
+      />
+    </div>
+  </div>
+</div>
