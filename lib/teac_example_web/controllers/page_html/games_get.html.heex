@@ -4,6 +4,7 @@
   <div class="grid grid-flow-row grid-cols-8 gap-y-12">
     <div :for={game <- @games |> dbg()} class="w-fit flex flex-col overflow-hidden">
       <div class="flex-1 text-xs py-2 overflow-hidden text-clip truncate">{game["name"]}</div>
+      {game["id"]}
       <img
         class="w-[132px] h-[190px]"
         src={

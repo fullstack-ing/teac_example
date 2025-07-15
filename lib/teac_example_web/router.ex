@@ -64,6 +64,8 @@ defmodule TeacExampleWeb.Router do
     ###### User Flow
     get "/user/bits/cheermotes/get", PageController, :bits_cheermotes_get
     get "/user/channels/get", PageController, :channels_get
+    get "/user/channels/patch", PageController, :channels_patch
+
     get "/user/chat/emotes/global/get", PageController, :chat_emotes_global_get
     get "/user/chat/emotes/set/get", PageController, :chat_emotes_set_get
     get "/user/chat/emotes/get", PageController, :chat_emotes_get
@@ -73,6 +75,7 @@ defmodule TeacExampleWeb.Router do
     get "/user/chat/messages/post", PageController, :chat_messages_post
     get "/user/clips/get", PageController, :clips_get
     get "/user/chat/color/get", PageController, :chat_color_get
+    get "/user/chat/color/put", PageController, :chat_color_put
 
     get "/user/content_classification_labels/get",
         PageController,

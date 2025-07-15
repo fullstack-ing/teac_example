@@ -15,11 +15,37 @@ defmodule TeacExampleWeb.PageController do
   def channels_get(conn, _) do
     {:ok, channels} =
       Teac.Api.Channels.get(
-        broadcaster_ids: [1_159_034_889, 27_082_158],
+        broadcaster_ids: ["1159034889", "27082158"],
         token: Teac.Oauth.ClientCredentialManager.get_token()
       )
 
     render(conn, :channels_get, channels: channels)
+  end
+
+  def channels_patch(conn, _) do
+    ident = conn.assigns.current_user.identities |> List.first()
+
+    {:ok, channels} =
+      Teac.Api.Channels.patch(
+        broadcaster_id: "1159034889",
+        token: ident.provider_token,
+        form: %{
+          "title" => "Building Twitch API Client in Elixir ⚗️",
+          "tags" => ["WebDevelopment", "Elixir", "TwitchAPI"],
+          "broadcaster_language" => "en",
+          "game_id" => "1469308723"
+          # "content_classification_labels" => [
+          #   %{
+          #     "id" => "DebatedSocialIssuesAndPolitics",
+          #     "is_enabled" => true
+          #   }
+          # ],
+          # "is_branded_content" => true,
+          # "is_rerun" => true
+        }
+      )
+
+    render(conn, :channels_patch, channels: channels)
   end
 
   def chat_emotes_global_get(conn, _) do
@@ -56,7 +82,6 @@ defmodule TeacExampleWeb.PageController do
         token: Teac.Oauth.ClientCredentialManager.get_token(),
         broadcaster_id: 27_082_158
       )
-      |> dbg()
 
     render(conn, :chat_badges_get, badges: badges)
   end
@@ -94,10 +119,23 @@ defmodule TeacExampleWeb.PageController do
     {:ok, color} =
       Teac.Api.Chat.Color.get(
         token: Teac.Oauth.ClientCredentialManager.get_token(),
-        user_id: 1_159_034_889
+        user_id: "1159034889"
       )
 
-    render(conn, :content_classification_labels_get, color: color)
+    render(conn, :chat_color_get, color: color)
+  end
+
+  def chat_color_put(conn, _) do
+    ident = conn.assigns.current_user.identities |> List.first()
+
+    Teac.Api.Chat.Color.put(
+      token: ident.provider_token,
+      user_id: "1159034889",
+      color_label: "green"
+    )
+    |> dbg()
+
+    render(conn, :chat_color_put)
   end
 
   def clips_get(conn, _) do
@@ -132,7 +170,7 @@ defmodule TeacExampleWeb.PageController do
         token: Teac.Oauth.ClientCredentialManager.get_token(),
         names: ["Software and Game Development", "IRL", "Just Chatting"],
         ids: ["27471", "394568"],
-        igdb_ids: 349_524
+        igdb_ids: ["349524"]
       )
 
     render(conn, :games_get, games: games)
